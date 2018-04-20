@@ -1,10 +1,13 @@
 package cn.lger.web;
 
+import cn.lger.dao.GoodDao;
 import cn.lger.domain.Commodity;
 import cn.lger.exception.BalanceNotEnoughException;
 import cn.lger.exception.CommodityNumberNotEnoughException;
 import cn.lger.exception.IdNotFoundException;
 import cn.lger.service.CommodityService;
+import cn.lger.service.GoodService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -25,7 +28,8 @@ public class CommodityController {
 
     @Resource
     private CommodityService commodityService;
-
+    @Autowired
+    private GoodService goodservice;
     @GetMapping("/addCommodity")
     public String getAddCommodityView(){
         return "addCommodity";
@@ -33,15 +37,67 @@ public class CommodityController {
 
     @PostMapping("/addCommodity")
     @ResponseBody
-    public Commodity addCommodity(Commodity commodity){
+    public String addCommodity(Commodity commodity){
         try{
-            return commodityService.add(commodity);
+            //return commodityService.add(commodity);
+            commodity.setId(commodity.toString());
+            GoodDao add = goodservice.dooperation("addgood");
+            int result = add.operation(commodity);
         } catch (Exception e){
             e.printStackTrace();
             return null;
         }
+        return "success";
+    }
+    @PostMapping("/deleteCommodity")
+    @ResponseBody
+    public String deleteCommodity(Commodity commodity){
+      System.out.println("aaaaaaaaaaaa");
+
+        System.out.println(commodity.getId());
+        System.out.println(commodity.getCommodityPrice());
+        try{
+            //commodity.setId(commodity.toString());
+
+            GoodDao delete = goodservice.dooperation("deletegood");
+            int result = delete.operation(commodity);
+        } catch (Exception e){
+            e.printStackTrace();
+            return "error";
+        }
+        return "success";
     }
 
+
+    @GetMapping("/modifyCommodity")
+    public String getModifyCommodityView(){
+        return "modifyCommodity";
+    }
+
+    @PostMapping("/updateCommodity")
+    @ResponseBody
+    public String updateCommodity(Commodity commodity){
+
+        try{
+           // commodityService.updateMemberGrade(commodity);
+            GoodDao update = goodservice.dooperation("updategood");
+            int result = update.operation(commodity);
+        } catch (Exception e){
+            e.printStackTrace();
+            return "error";
+        }
+        return "success";
+    }
+
+    @PostMapping("/queryAllCommodity")
+    @ResponseBody
+    public Page<Commodity> queryAllCommodity(Integer currentPage){
+        if (currentPage == null || currentPage < 0){
+            currentPage = 0;
+        }
+        Pageable pageable = new PageRequest(currentPage, 3);
+        return commodityService.findAll(pageable);
+    }
     @GetMapping("/purchaseCommodity")
     public String getPurchaseCommodityView(){
         return "purchaseCommodity";
@@ -64,32 +120,4 @@ public class CommodityController {
         }
         return "success";
     }
-
-    @GetMapping("/modifyCommodity")
-    public String getModifyCommodityView(){
-        return "modifyCommodity";
-    }
-
-    @PostMapping("/updateCommodity")
-    @ResponseBody
-    public String updateCommodity(Commodity commodity){
-        try{
-            commodityService.updateMemberGrade(commodity);
-        } catch (Exception e){
-            e.printStackTrace();
-            return "error";
-        }
-        return "success";
-    }
-
-    @PostMapping("/queryAllCommodity")
-    @ResponseBody
-    public Page<Commodity> queryAllCommodity(Integer currentPage){
-        if (currentPage == null || currentPage < 0){
-            currentPage = 0;
-        }
-        Pageable pageable = new PageRequest(currentPage, 3);
-        return commodityService.findAll(pageable);
-    }
-
 }

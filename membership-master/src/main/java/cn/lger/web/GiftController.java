@@ -32,8 +32,8 @@ public class GiftController {
 
     @Resource
     private GiftService giftService;
-    @Autowired
-    private GoodService goodservice;
+   // @Autowired
+    //private GoodService goodservice;
     @GetMapping("/setGift")
     public String getSetGiftView(){
         return "setGift";
@@ -44,13 +44,13 @@ public class GiftController {
     public String setGift(Gift gift){
         try{
             giftService.add(gift);
-            Good good = new Good();
-            good.setGoodIntegral(gift.getGiftIntegral());
-            good.setGoodName(gift.getGiftName());
-            good.setGoodNumber(gift.getGiftNumber());
-            good.setGoodPrice(gift.getGiftPrice());
-           GoodDao add = goodservice.dooperation("addgood");
-           int result = add.operation(good);
+          //  Good good = new Good();
+           // good.setGoodIntegral(gift.getGiftIntegral());
+            //good.setGoodName(gift.getGiftName());
+            //good.setGoodNumber(gift.getGiftNumber());
+            //good.setGoodPrice(gift.getGiftPrice());
+           //GoodDao add = goodservice.dooperation("addgood");
+           //int result = add.operation(good);
         } catch (Exception e){
             e.printStackTrace();
             return "error";
