@@ -1,6 +1,6 @@
 package cn.lger.dao;
 
-import cn.lger.domain.Good;
+import cn.lger.domain.Commodity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -15,7 +15,7 @@ import javax.transaction.Transactional;
  */
 @Repository
 public interface GoodDao {
-    int operation (Good good);
+    int operation (Commodity good);
    // @Modifying
    // @Transactional
    // @Query("update Gift gift set gift.giftNumber = ?2 where gift.id = ?1")

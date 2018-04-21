@@ -2,7 +2,7 @@ package cn.lger.service;
 
 
 import cn.lger.dao.GoodDao;
-import cn.lger.domain.Good;
+import cn.lger.domain.Commodity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

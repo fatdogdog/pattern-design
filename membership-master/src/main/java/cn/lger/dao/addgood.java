@@ -1,6 +1,6 @@
 package cn.lger.dao;
 
-import cn.lger.domain.Good;
+import cn.lger.domain.Commodity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -16,8 +16,8 @@ public class addgood implements GoodDao{
     @Autowired
     private JdbcTemplate jdbcTemplate;
     @Override
-    public int operation(Good good) {
-        return jdbcTemplate.update("insert into good(good_integral, good_name, good_number,good_price) values(?, ?, ?,?)",
-                good.getGoodIntegral(),good.getGoodName(),good.getGoodNumber(),good.getGoodPrice());
+    public int operation(Commodity ommodity) {
+        return jdbcTemplate.update("insert into commodity(commodity_integral, commodity_name, commodity_number,commodity_price,id) values(?, ?, ?,?,?)",
+                ommodity.getCommodityIntegral(),ommodity.getCommodityName(),ommodity.getCommodityNumber(),ommodity.getCommodityPrice(),ommodity.getId());
 
     }}
