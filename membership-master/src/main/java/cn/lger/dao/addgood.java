@@ -17,7 +17,7 @@ public class addgood implements GoodDao{
     private JdbcTemplate jdbcTemplate;
     @Override
     public int operation(Commodity ommodity) {
-        return jdbcTemplate.update("insert into commodity(commodity_integral, commodity_name, commodity_number,commodity_price,id) values(?, ?, ?,?,?)",
-                ommodity.getCommodityIntegral(),ommodity.getCommodityName(),ommodity.getCommodityNumber(),ommodity.getCommodityPrice(),ommodity.getId());
+        return jdbcTemplate.update("insert into commodity(commodity_integral, commodity_name, commodity_number,commodity_price,id,commodity_type) values(?, ?, ?,?,?,?)",
+                ommodity.getCommodityIntegral(),ommodity.getCommodityName(),ommodity.getCommodityNumber(),ommodity.getCommodityPrice(),ommodity.getId(),ommodity.getCommodityType());
 
     }}

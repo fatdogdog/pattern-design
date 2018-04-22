@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    
+
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Home</title>
@@ -165,33 +165,47 @@
         <div id="page-inner">
             <!--自定义内容-->
             <!--<div class="container">-->
-                <div class="card">
-                    <div class="card-content">
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <input placeholder="商品号码" id="commodityId" type="text" class="validate" name="commodityId" required/>
-                                <label for="commodityId">商品号码</label>
-                            </div>
-                            <div class="input-field col s6">
-                                    <input id="memberId" onblur="confirmMemberId()" name="memberId" type="text" class="validate" placeholder="会员号码" required/>
-                                <label for="memberId">会员号码</label>
-                            </div>
-                        </div>
-                        <div class="switch">
-                            <label>
-                                现金支付
-                                <input id="balancePay" type="checkbox" value="true">
-                                <span class="lever"></span>
-                                余额支付
-                            </label>
-                        </div>
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">分类查询</a>
                     </div>
-
-                    <div class="card-action">
-                        <a href="javascript:void(0)" onclick="purchaseCommodity()">购买商品</a>
+                    <div>
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    车<b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">轿车</a></li>
+                                    <li><a href="#">跑车</a></li>
+                                    <li><a href="#">摩托车</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    古董<b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">字画</a></li>
+                                    <li><a href="#">玉器</a></li>
+                                    <li><a href="#">瓷器</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    资产<b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">房产</a></li>
+                                    <li><a href="#">土地</a></li>
+                                    <li><a href="#">虚拟财产</a></li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
-                <!--</div>-->
-            </div>
+                </div>
+            </nav>
 
             <!--页脚-->
             <br>
@@ -224,7 +238,7 @@
 <script src="assets/js/custom-scripts.js"></script>
 
 <script>
-    
+
     function confirmMemberId() {
         var reg = /^\d+$/;
         var obj1= document.getElementById('memberId');
@@ -238,22 +252,22 @@
         }
         return true;
     }
-    
+
     function purchaseCommodity() {
         if (confirmMemberId())
-        if (confirm('确认购买该商品吗？')) {
-            var obj1= document.getElementById('memberId').value;
-            var obj2 = document.getElementById('commodityId').value;
-            var obj3 = document.getElementById("balancePay").checked;
-            $.ajax({
-                url: '/purchaseCommodity',
-                type: 'POST',
-                data: {memberId: obj1, commodityId:obj2, balance:obj3},
-                success: function (data) {
-                    alert(data);
-                }
-            })
-        }
+            if (confirm('确认购买该商品吗？')) {
+                var obj1= document.getElementById('memberId').value;
+                var obj2 = document.getElementById('commodityId').value;
+                var obj3 = document.getElementById("balancePay").checked;
+                $.ajax({
+                    url: '/purchaseCommodity',
+                    type: 'POST',
+                    data: {memberId: obj1, commodityId:obj2, balance:obj3},
+                    success: function (data) {
+                        alert(data);
+                    }
+                })
+            }
     }
 
 </script>
