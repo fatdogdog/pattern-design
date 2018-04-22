@@ -22,6 +22,8 @@ public class Commodity {
     private Long commodityIntegral;
     private Integer commodityNumber;
     private Float commodityPrice;
+    private String commodityType;
+    private String commodityBidders;
 
     public String getId() {
         return id;
@@ -72,5 +74,21 @@ public class Commodity {
                 ", commodityNumber=" + commodityNumber +
                 ", commodityPrice=" + commodityPrice +
                 '}';
+    }
+
+    public String getCommodityBidders() {
+        return commodityBidders;
+    }
+
+    public void setCommodityBidders(String commodityBidders) {
+        this.commodityBidders = commodityBidders;
+    }
+
+    public String getCommodityType() {
+        return commodityType;
+    }
+
+    public void setCommodityType(String commodityType) {
+        this.commodityType = commodityType;
     }
 }

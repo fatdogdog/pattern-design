@@ -187,11 +187,43 @@
                                 <label for="commodityPrice">商品价格</label>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-action">
-                        <a href="javascript:void(0)" onclick="addCommodity()">添加商品</a>
-                    </div>
-                <!--</div>-->
+                        <div class="row">
+                            <!--  <div class="input-field col s6">
+                                   <input placeholder="commodityType" id="commodityType" type="text" class="validate" name="commodityType" required/>
+                                   <label for="commodityType">commodity Type</label>
+                               </div>-->
+                               <div class="input-field col s2">
+                                   Type：
+                               </div>
+                               <div class="col s10">
+                                   <label style="display: none" for="commodityType">State</label>
+                                   <select id="commodityType" class="form-control" name="commodityType" required>
+                                       <option value="Salooncar">saloon car</option>
+                                       <option value="Roadster">roadster</option>
+                                       <option value="Motorcycle">motorcycle</option>
+                                       <option value="Calligraphyandpainting">calligraphy and painting</option>
+                                       <option value="Chinaware">chinaware</option>
+                                       <option value="Jadearticle">Jade article</option>
+                                       <option value="Houseproperty">House property</option>
+                                       <option value="Land">land</option>
+                                       <option value="Virtualproperty">Virtual property</option>
+                                   </select>
+                               </div>
+                               <!--   <div class="input-field col s6">
+                                  <select id="commodityType" name="commodityType" onkeydown="commodityType.del(this,event)" onkeypress="commodityType.write(this,event)">
+                                      <option value=""></option>
+                                      <option value="aaa">aaa</option>
+                                      <option value="bbb">bbb</option>
+                                      <option value="ccc">ccc</option>
+                                  </select>
+                                  </div>-->
+
+                           </div>
+                       </div>
+                       <div class="card-action">
+                           <a href="javascript:void(0)" onclick="addCommodity()">添加商品</a>
+                       </div>
+                   <!--</div>-->
             </div>
 
             <!--页脚-->
@@ -267,10 +299,11 @@
             var obj2 = document.getElementById('commodityIntegral').value;
             var obj3 = document.getElementById('commodityPrice').value;
             var obj4 = document.getElementById('commodityName').value;
+            var obj5 = document.getElementById('commodityType').value;
             $.ajax({
                 url: '/addCommodity',
                 type: 'POST',
-                data: {commodityNumber: obj1, commodityIntegral:obj2,commodityPrice:obj3 ,commodityName:obj4},
+                data: {commodityNumber: obj1, commodityIntegral:obj2,commodityPrice:obj3 ,commodityName:obj4,commodityType:obj5},
                 success: function (data) {
                     alert(data);
                 }

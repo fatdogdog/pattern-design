@@ -198,6 +198,14 @@
                                     </th>
                                     <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1"
                                         colspan="1" aria-label="Platform(s): activate to sort column ascending"
+                                    >Type
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1"
+                                        colspan="1" aria-label="Platform(s): activate to sort column ascending"
+                                    >bidders
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1"
+                                        colspan="1" aria-label="Platform(s): activate to sort column ascending"
                                     >操作
                                     </th>
                                 </tr>
@@ -236,7 +244,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
-                <h5 class="modal-title" id="myModalLabel">修改会员类别</h5>
+                <h5 class="modal-title" id="myModalLabel">modify</h5>
             </div>
             <div class="modal-body">
                 <div class="form-group" style="display: none">
@@ -260,6 +268,29 @@
                     <input type="text" class="form-control" id="commodityIntegral" placeholder="商品数量">
                 </div>
 
+                <div class="form-group">
+                    <div class="input-field col s2">
+                        Type：
+                    </div>
+                    <div class="col s10">
+                        <label style="display: none" for="commodityType">State</label>
+                        <select id="commodityType" class="form-control" name="commodityType" required>
+                            <option value="Salooncar">saloon car</option>
+                            <option value="Roadster">roadster</option>
+                            <option value="Motorcycle">motorcycle</option>
+                            <option value="Calligraphyandpainting">calligraphy and painting</option>
+                            <option value="Chinaware">chinaware</option>
+                            <option value="Jadearticle">Jade article</option>
+                            <option value="Houseproperty">House property</option>
+                            <option value="Land">land</option>
+                            <option value="Virtualproperty">Virtual property</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="commodityBidders">bidders</label>
+                    <input type="text" class="form-control" id="commodityBidders" readonly="readonly" placeholder="商品数量">
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn waves-effect waves-light" onclick="updateCommodity()">保存修改</button>
@@ -318,6 +349,8 @@
                             '<td>' + content.commodityNumber + '</td>' +
                             '<td>' + content.commodityPrice + '</td>' +
                             '<td>' + content.commodityIntegral + '</td>' +
+                            '<td>' + content.commodityType + '</td>' +
+                            '<td>' + content.commodityBidders + '</td>' +
                             '<td><button class="waves-effect waves-light btn" data-toggle="modal" data-target="#myModal" onclick="openModelWindow(this)">修改</button>&nbsp;|&nbsp;'+
                             '<button class="btn-danger btn" onclick="deleteCommodity(this)">删除</button></td>' +
                             '</tr>';
@@ -363,6 +396,8 @@
         $('#commodityNumber').val($(info.children()[2]).text());
         $('#commodityPrice').val($(info.children()[3]).text());
         $('#commodityIntegral').val($(info.children()[4]).text());
+        $('#commodityType').val($(info.children()[5]).text());
+        $('#commodityBidders').val($(info.children()[6]).text());
         $('#myModal').modal('show');
     }
 
@@ -372,11 +407,13 @@
         var commodityNumber = $('#commodityNumber').val();
         var commodityPrice = $('#commodityPrice').val();
         var commodityIntegral = $('#commodityIntegral').val();
+        var commodityType = $('#commodityType').val();
+        var commodityBidders = $('#commodityBidders').val();
 
         $.ajax({
             url: '/updateCommodity',
             type: 'POST',
-            data: {id: commodityId,commodityPrice:commodityPrice,commodityNumber:commodityNumber, commodityIntegral:commodityIntegral, commodityName:commodityName},
+            data: {id: commodityId,commodityPrice:commodityPrice,commodityNumber:commodityNumber, commodityIntegral:commodityIntegral, commodityName:commodityName,commodityType:commodityType,commodityBidders:commodityBidders},
             success: function (data) {
                 var modal = $('#myModal');
                 modal.attr('class', 'modal fade');
@@ -390,6 +427,8 @@
                     $(info.children()[2]).text(commodityNumber);
                     $(info.children()[3]).text(commodityPrice);
                     $(info.children()[4]).text(commodityIntegral);
+                    $(info.children()[5]).text(commodityType);
+                    $(info.children()[6]).text(commodityBidders);
                 }
                 alert(data);
             }
@@ -408,10 +447,13 @@
             var commodityNumber = $(info1.children()[2]).children().val();
             var commodityIntegral = $(info1.children()[4]).children().val();
             var commodityName = $(info1.children()[1]).children().val();
+            var commodityType = $(info1.children()[4]).children().val();
+            var commodityBidders = $(info1.children()[1]).children().val();
+
             $.ajax({
                 url: '/deleteCommodity',
                 type: 'POST',
-                data: {id: commodityId,commodityPrice:commodityPrice,commodityNumber:commodityNumber, commodityIntegral:commodityIntegral, commodityName:commodityName},
+                data: {id: commodityId,commodityPrice:commodityPrice,commodityNumber:commodityNumber, commodityIntegral:commodityIntegral, commodityName:commodityName,commodityType:commodityType,commodityBidders:commodityBidders},
                 success: function (data) {
 
                     alert(data);
