@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.QI.dao.BookDao;
 import com.QI.model.Book;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -24,7 +25,12 @@ public class updatebookServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        String number = req.getParameter("number");
+        
+        HttpSession session = req.getSession();
+        if(session.getAttribute("role")!="admin"){
+            resp.sendRedirect("no-permission.jsp");
+        } else{
+            String number = req.getParameter("number");
         int pe = Integer.parseInt(number);
 
         BookDao dao = new BookDao();
@@ -32,6 +38,8 @@ public class updatebookServlet extends HttpServlet {
         req.getSession().setAttribute("updateBook", bk);
 
         resp.sendRedirect("updatebook.jsp");
+        }
+        
     }
 
     @Override

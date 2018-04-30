@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.QI.dao.BookDao;
+import com.QI.dao.MessageDao;
 import com.QI.dao.PersonDao;
 import com.QI.model.Book;
 import com.QI.model.Person;
@@ -73,6 +74,11 @@ public class querybookServlet extends HttpServlet {
         PersonDao pd = new PersonDao();
         person = pd.getPersonByAccount(person.getAccount());
         req.getSession().setAttribute("loginPerson", person);
+        
+        MessageDao md = new MessageDao();
+        Boolean unread = md.getUnread(person.getAccount());
+        req.getSession().setAttribute("unread", unread);
+        md.setRead(person.getAccount());
 
         resp.sendRedirect("index.jsp");
     }

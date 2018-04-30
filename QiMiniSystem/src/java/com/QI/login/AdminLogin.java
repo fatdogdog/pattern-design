@@ -6,10 +6,12 @@
 package com.QI.login;
 
 import com.QI.dao.AdminDao;
+import com.QI.dao.PersonDao;
 import com.QI.model.Account;
 import javax.servlet.http.HttpServletRequest;
 import com.QI.model.Admin;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -36,6 +38,7 @@ public class AdminLogin implements Login {
    public void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
        HttpSession session = req.getSession();
        session.setAttribute("loginPerson", acc);
+       session.setAttribute("role", "admin");
        resp.sendRedirect("./book");
    }
 }

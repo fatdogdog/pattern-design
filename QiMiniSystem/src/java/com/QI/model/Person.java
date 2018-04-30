@@ -15,7 +15,7 @@ public class Person implements Account{
     private String account;
     private String password;
     private String email;
-    private float balance;
+    private double balance;
 
     public String getAccount() {
         return account;
@@ -41,11 +41,11 @@ public class Person implements Account{
         this.email = email;
     }
 
-    public float getBalance() {
+    public double getBalance() {
         return balance;
     }
 
-    public void setBalance(float balance) {
+    public void setBalance(double balance) {
         this.balance = balance;
     }
     

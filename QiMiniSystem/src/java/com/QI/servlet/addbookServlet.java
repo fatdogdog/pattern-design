@@ -29,8 +29,12 @@ public class addbookServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-
-        String number = req.getParameter("number");
+        
+        HttpSession session = req.getSession();
+        if(session.getAttribute("role")!="admin"){
+            resp.sendRedirect("no-permission.jsp");
+        } else{
+            String number = req.getParameter("number");
         String title = req.getParameter("title");
         String writer = req.getParameter("writer");
         String price = req.getParameter("price");
@@ -40,13 +44,15 @@ public class addbookServlet extends HttpServlet {
         System.out.println(path);
         int no = Integer.parseInt(number);
 
-        HttpSession session = req.getSession();
         AddBook ab = new AddBook(title, price, amount, no, writer, category, path);
         if(ab.operate()==0){
             resp.sendRedirect("./book");
         } else{
             resp.sendRedirect("error.jsp");
         }
+        }
+        
+        
     }
 
     @Override

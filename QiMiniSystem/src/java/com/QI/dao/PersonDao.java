@@ -48,20 +48,15 @@ public class PersonDao {
         return null;
     }
 
-    public List<Person> getAllPerson() {
-        List<Person> personList = new ArrayList<Person>();
+    public List<String> getAllPerson() {
+        List<String> personList = new ArrayList<String>();
         try {
             String sql = "select * from person";
             Connection conn = DBUtil.getSingleton().getConnection();
             Statement stat = conn.createStatement();
             ResultSet res = stat.executeQuery(sql);
             while (res.next()) {
-                Person ps = new Person();
-                ps.setAccount(res.getString("account"));
-                ps.setPassword(res.getString("password"));
-                ps.setEmail(res.getString("email"));
-                ps.setBalance(res.getFloat("balance"));
-                personList.add(ps);
+                personList.add(res.getString("account"));
             }
         } catch (Exception e) {
             e.printStackTrace();

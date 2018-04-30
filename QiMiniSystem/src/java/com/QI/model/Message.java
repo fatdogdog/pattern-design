@@ -13,6 +13,7 @@ public class Message {
     
     private String account;
     private String content;
+    private int read;
 
 
     public String getAccount() {
@@ -29,6 +30,14 @@ public class Message {
 
     public void setContent(String content) {
         this.content = content;
+    }
+    
+    public int getRead() {
+        return read;
+    }
+
+    public void setRead(int read) {
+        this.read = read;
     }
     
 }

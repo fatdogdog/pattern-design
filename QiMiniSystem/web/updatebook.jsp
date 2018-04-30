@@ -52,13 +52,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#">BACKEND</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
             <li class="active"><a href="./book">AllBOOKS</a></li>
             <li><a href="./addbook.jsp">ADDBOOK</a></li>
             <li><a href="./discount">DISCOUNT</a></li>
+            <li><a href="./topup">TOPUP</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">

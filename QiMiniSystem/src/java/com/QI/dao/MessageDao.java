@@ -9,6 +9,7 @@ import com.QI.model.Message;
 import com.QI.util.DBUtil;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
@@ -49,6 +50,33 @@ public class MessageDao {
 
         }
         return msg;
+    }
+    
+    public void setRead(String account) {
+        String sql = "update message set unread = 0 where account = '" + account + "'";
+        try {
+            Connection conn = DBUtil.getSingleton().getConnection();
+            Statement stat = conn.createStatement();
+            stat.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public Boolean getUnread(String account) {
+        Boolean unread = false;
+        try {
+            String sql = "select * from message where account = '" + account + "' and unread = 1";
+            Connection conn = DBUtil.getSingleton().getConnection();
+            Statement stat = conn.createStatement();
+            ResultSet res = stat.executeQuery(sql);
+            if (res.next()) {
+                unread = true;
+            }
+        } catch (Exception e) {
+
+        }
+        return unread;
     }
     
 }

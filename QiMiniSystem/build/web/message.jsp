@@ -29,6 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     <!-- Custom styles for this template -->
     <link href="jumbotron.css" rel="stylesheet">
+    <title>Knowledge Bakery</title>
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -52,17 +53,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="./index">BOOK STORE</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+            <li><a href="./mybook">MY BOOKS</a></li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <%Person p = (Person) session.getAttribute("loginPerson");%> <%=p.getAccount()%> 
                   <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="./profile.jsp">profile</a></li>
+                <li><a href="./profile">profile</a></li>
                 <li><a href="./message.jsp">message</a></li>
+                <li><a href="./login-register.jsp">logout</a></li>
               </ul>
             </li>
           </ul>

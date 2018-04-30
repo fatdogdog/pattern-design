@@ -32,10 +32,5 @@
         <table align="center">
             <h2>Wrong user name or password！ </h2><br/>
         </table>
-        <table align="center">
-            <tr><input type="button" value="Try Again" onClick="window.location.href = 'login.jsp'"></a></tr>
-            <tr>&nbsp;</tr>
-            <tr><input type="button" value="New Register" onClick="window.location.href = 'register.jsp'"></a></tr>
-        </table>
     </body>
 </html>

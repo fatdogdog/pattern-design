@@ -24,7 +24,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Jumbotron Template for Bootstrap</title>
+    <title>Knowledge Bakery</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -75,17 +75,21 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="./index">BOOK STORE</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+            <li><a href="./mybook">MY BOOKS</a></li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <%Person p = (Person) session.getAttribute("loginPerson");%> <%=p.getAccount()%> 
                   <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="./profile.jsp">profile</a></li>
+                <li><a href="./profile">profile</a></li>
                 <li><a href="./message.jsp">message</a></li>
+                <li><a href="./login-register.jsp">logout</a></li>
               </ul>
             </li>
           </ul>
@@ -109,6 +113,11 @@
       <div id="faildAlert" class="alert alert-danger hide">
     <a href="#" class="close" data-dismiss="alert">&times;</a>
     <center>Your balance is not enough</center>
+</div>
+        
+        <div id="initAlert" class="alert alert-success hide">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <center>Welcome to our system and you have got 5 pounds!</center>
 </div>
       <!-- Example row of columns -->
       <div class="row" style="margin-bottom:10px;margin-left:6px;">
@@ -166,11 +175,21 @@
             $('#successAlert').bind('closed.bs.alert', function () {
                  window.location.href = "./index"
             })
-        } 
+            show();
+        }
+                
     </script>
     <script>
         var number = '';
         var price = 0;
+        var unread = "<%=session.getAttribute("unread")%>";
+        
+        function show(){
+            if(unread=="true"){
+                $("#initAlert").attr("class","alert alert-success");
+            }
+        }
+        
         function confirm(num, price){
             number = num;
             price = price;

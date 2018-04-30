@@ -44,6 +44,7 @@ public class NormalLogin implements Login {
        Person per = (Person)acc;
        Message msg = dao.getMessageByAccount(per.getAccount());
        session.setAttribute("message", msg);
+       session.setAttribute("role", "normal");
        resp.sendRedirect("./index?order=price");
    }
 

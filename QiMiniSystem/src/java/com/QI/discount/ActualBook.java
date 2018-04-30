@@ -105,7 +105,7 @@ class BioBook extends AbstractBook {
     }  
       
     public void discount(int dis) {  
-        book.setPrice(book.getPrice() * dis / 10);
+        book.setPrice(book.getPrice() * dis / 10.0);
         BookDao dao = new BookDao();
         dao.update(book);
     }  

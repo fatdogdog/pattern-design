@@ -57,6 +57,14 @@
         <servlet-class>com.QI.servlet.updateokbookServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>topupServlet</servlet-name>
+        <servlet-class>com.QI.servlet.topupServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>profileServlet</servlet-name>
+        <servlet-class>com.QI.servlet.profileServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>updateokstudentServlet</servlet-name>
         <servlet-class>com.QI.servlet.updateokstudentServlet</servlet-class>
     </servlet>
@@ -64,13 +72,25 @@
         <servlet-name>updatestudentServlet</servlet-name>
         <servlet-class>com.QI.servlet.updatestudentServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>mybookServlet</servlet-name>
+        <servlet-class>com.QI.servlet.mybookServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>addbookServlet</servlet-name>
         <url-pattern>/addbookServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>profileServlet</servlet-name>
+        <url-pattern>/profile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>buyServlet</servlet-name>
         <url-pattern>/buy</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>topupServlet</servlet-name>
+        <url-pattern>/topup</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>uploadServlet</servlet-name>
@@ -79,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>addpersonServlet</servlet-name>
         <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>mybookServlet</servlet-name>
+        <url-pattern>/mybook</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>bookServlet</servlet-name>

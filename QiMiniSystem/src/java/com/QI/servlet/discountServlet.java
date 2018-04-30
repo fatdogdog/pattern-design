@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.QI.discount.Client;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -29,13 +30,19 @@ public class discountServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         
-        String category = req.getParameter("category");
-        String discount = req.getParameter("discount");
-        if (category!=null && discount!=null){
-            Client client = new com.QI.discount.Client(category, Integer.parseInt(discount));
-            client.discount();
+        HttpSession session = req.getSession();
+        if(session.getAttribute("role")!="admin"){
+            resp.sendRedirect("no-permission.jsp");
+        } else{
+            String category = req.getParameter("category");
+            String discount = req.getParameter("discount");
+            if (category!=null && discount!=null){
+                Client client = new com.QI.discount.Client(category, Integer.parseInt(discount));
+                client.discount();
+            }
+            resp.sendRedirect("discount.jsp");
         }
-        resp.sendRedirect("discount.jsp");
+       
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)

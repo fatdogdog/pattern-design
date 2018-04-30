@@ -6,6 +6,7 @@
 package com.QI.servlet;
 
 import com.QI.dao.BookDao;
+import com.QI.dao.MybookDao;
 import com.QI.dao.PersonDao;
 import com.QI.model.Book;
 import com.QI.model.Person;
@@ -35,14 +36,17 @@ public class buyServlet extends HttpServlet {
         String account = req.getParameter("account");
         PersonDao pd = new PersonDao();
         Person person = pd.getPersonByAccount(account);
-        Float balance = person.getBalance();
+        double balance = person.getBalance();
         BookDao bd = new BookDao();
         Book book = bd.getBookByNo(Integer.parseInt(number));
         if(book.getPrice() <= balance){
             person.setBalance(balance-book.getPrice());
             pd.update(person);
             book.setSales(book.getSales()+1);
+            book.setAmount(book.getAmount()-1);
             bd.update(book);
+            MybookDao md = new MybookDao();
+            md.addBook(account, book);
             out.print("success");
             out.flush();  
             out.close();  
